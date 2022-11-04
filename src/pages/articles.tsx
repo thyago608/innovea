@@ -16,15 +16,16 @@ export default function Articles() {
       <Head>
         <title>Innovea | Home</title>
       </Head>
-      <section className="flex flex-col gap-4">
-        {data?.map((item) => (
+      <section className="flex flex-col gap-4 min-h-screen">
+        {data?.articles?.map((item) => (
           <Article key={item.url} data={item} />
         ))}
       </section>
       <button
         type="button"
-        className="block bg-cyan-500 h-12 px-5 rounded-full mx-auto mt-10 text-zinc-800 hover:bg-cyan-400 transition-background duration-200"
+        className="block bg-cyan-500 h-12 px-5 rounded-full mx-auto mt-10 text-zinc-800 disabled:opacity-70 disabled:cursor-not-allowed "
         onClick={handleNextPage}
+        disabled={page === data?.totalPages}
       >
         Carregar mais artigos
       </button>

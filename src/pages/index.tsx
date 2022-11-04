@@ -17,12 +17,12 @@ export default function Home() {
         </p>
         <Link
           href="/articles"
-          className="flex items-center justify-center w-44 h-10 rounded-full bg-cyan-500 text-white text-sm lg:text-base"
+          className="flex items-center justify-center w-44 h-10 rounded-full bg-cyan-500 text-white text-sm lg:text-base hover:bg-cyan-600 transition-background"
         >
           Clique aqui
         </Link>
       </section>
-      <Image src="/hero.svg" alt="" width={500} height={300} />
+      <Image src="/hero.svg" alt="" width={500} height={300} title="artigos" />
     </main>
   );
 }

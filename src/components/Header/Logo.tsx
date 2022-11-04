@@ -8,6 +8,7 @@ export function Logo() {
         src="/logo.png"
         alt="innovea"
         fill
+        title="innovea"
         priority
         sizes="(max-width: 768px) 112px
                 (min-width: 1024px) 128px             

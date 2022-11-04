@@ -15,19 +15,16 @@ export function formatArticles(articles: INewsApiArticle[]) {
 }
 
 export async function getArticles(page: number) {
-  const topHeadlines = await newsAPI.getEverything({
-    q: "stocks",
-    qInTitle: "stock",
-    sources: ["bbc-news"],
-    language: "en",
-    sortBy: "relevancy",
+  const topHeadlines = await newsAPI.getTopHeadlines({
+    category: "business",
     pageSize: LIMIT_PER_PAGE,
     page,
   });
 
   const topHeadLinesFormatted = formatArticles(topHeadlines.articles);
+  const totalPages = Math.ceil(topHeadlines.totalResults / LIMIT_PER_PAGE);
 
-  return topHeadLinesFormatted;
+  return { ...topHeadlines, articles: topHeadLinesFormatted, totalPages };
 }
 
 export function useFetchArticles(page: number) {
