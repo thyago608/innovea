@@ -14,7 +14,7 @@ export function NavItem({ children, ...rest }: NavItemProps) {
     <li>
       <Link
         className={clsx(
-          "flex h-16 px-2 items-center text-sm text-zinc-700 font-semibold capitalize transition-background duration-200 hover:bg-gray-200 md:h-20 lg:text-base",
+          "flex h-16 px-2 items-center text-sm text-zinc-700 capitalize transition-background duration-200 hover:bg-gray-200 md:h-20 lg:text-base",
           {
             "font-semibold border-b-4 rounded border-b-cyan-500":
               rest.href === asPath,
