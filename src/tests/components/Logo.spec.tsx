@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import { Logo } from "./Logo";
+import { Logo } from "../../components/Header/Logo";
 
 describe("Logo Component", () => {
   it("should render correctly", () => {

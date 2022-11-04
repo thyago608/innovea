@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import { Article } from "./Article";
+import { Article } from "../../components/Article";
 
 const articleMockData = {
   author: "John doe",
@@ -30,9 +30,8 @@ describe("Article Component", () => {
   it("should redirect the user to the given href", () => {
     render(<Article data={articleMockData} />);
 
-    expect(screen.getByRole("link")).toHaveAttribute(
-      "href",
-      articleMockData.url
-    );
+    const link = screen.getByRole("link");
+
+    expect(link).toHaveAttribute("href", articleMockData.url);
   });
 });

@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import { Header } from ".";
+import { Header } from "../../components/Header";
 
 jest.mock("next/router", () => ({
   useRouter: jest.fn().mockReturnValue({
