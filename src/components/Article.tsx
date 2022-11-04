@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { ArticleData } from "types/Article";
+import { INewsApiArticle } from "ts-newsapi/lib/types";
 
 interface ArticleProps {
-  data: ArticleData;
+  data: INewsApiArticle;
 }
 
 export function Article({ data }: ArticleProps) {
@@ -17,12 +17,11 @@ export function Article({ data }: ArticleProps) {
           backgroundImage: `url('${data.urlToImage}')`,
         }}
       />
-
       <strong className="mb-3 text-lg text-zinc-800 lg:text-xl">
         {data.title}
       </strong>
       <p className="text-sm text-zinc-800 lg:text-base">{data.description}</p>
-      <div className="flex items-center gap-6 mt-5">
+      <div className="flex flex-col items-center gap-6 mt-5 md:flex-row">
         <time className="text-sm text-zinc-500">{data.publishedAt}</time>
         <div className="flex items-center gap-1">
           <span className="font-semibold text-zinc-700">por:</span>

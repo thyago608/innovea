@@ -3,6 +3,10 @@ import "@testing-library/jest-dom";
 import { Article } from "../../components/Article";
 
 const articleMockData = {
+  source: {
+    id: "1",
+    name: "testing",
+  },
   author: "John doe",
   title: "This is any title",
   description: "This is any description",
@@ -10,6 +14,7 @@ const articleMockData = {
   urlToImage:
     "https://images.unsplash.com/photo-1667487175121-caf8bd1b3619?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzOXx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60",
   publishedAt: "03 de novembro de 2022",
+  content: null,
 };
 
 describe("Article Component", () => {

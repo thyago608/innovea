@@ -1,42 +1,33 @@
 import Head from "next/head";
-import { GetServerSideProps } from "next";
 import { Article } from "components/Article";
-import { api } from "services/api";
-import { convertISODate } from "utils/convertDate";
-import { ArticlesApiData, ArticleData } from "types/Article";
+import { useState } from "react";
+import { useFetchArticles } from "hooks/useFetchArticles";
 
-interface ArticlesProps {
-  articlesList: ArticleData[];
-}
+export default function Articles() {
+  const [page, setPage] = useState(1);
+  const { data } = useFetchArticles(page);
 
-export default function Articles({ articlesList }: ArticlesProps) {
+  function handleNextPage() {
+    setPage((oldState) => oldState + 1);
+  }
+
   return (
     <main className="min-h-screen max-w-[1000px] my-8 mx-auto">
       <Head>
         <title>Innovea | Home</title>
       </Head>
       <section className="flex flex-col gap-4">
-        {articlesList.map((item) => (
+        {data?.map((item) => (
           <Article key={item.url} data={item} />
         ))}
       </section>
+      <button
+        type="button"
+        className="block bg-cyan-500 h-12 px-5 rounded-full mx-auto mt-10 text-zinc-800 hover:bg-cyan-400 transition-background duration-200"
+        onClick={handleNextPage}
+      >
+        Carregar mais artigos
+      </button>
     </main>
   );
 }
-
-export const getServerSideProps: GetServerSideProps = async () => {
-  const response = await api.get<ArticlesApiData>(
-    `top-headlines?country=us&apiKey=${process.env.NEWS_API_KEY}`
-  );
-
-  const articlesFormatted = response.data.articles.map((item) => ({
-    ...item,
-    publishedAt: convertISODate(item.publishedAt),
-  }));
-
-  return {
-    props: {
-      articlesList: articlesFormatted,
-    },
-  };
-};
