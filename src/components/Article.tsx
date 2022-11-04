@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { ArticleData } from "types/Article";
 
@@ -18,11 +17,20 @@ export function Article({ data }: ArticleProps) {
           backgroundImage: `url('${data.urlToImage}')`,
         }}
       />
-      <time className="text-sm text-zinc-500">{data.publishedAt}</time>
-      <strong className="mt-3 mb-2 text-lg text-zinc-800 lg:text-xl">
+
+      <strong className="mb-3 text-lg text-zinc-800 lg:text-xl">
         {data.title}
       </strong>
       <p className="text-sm text-zinc-800 lg:text-base">{data.description}</p>
+      <div className="flex items-center gap-6 mt-5">
+        <time className="text-sm text-zinc-500">{data.publishedAt}</time>
+        <div className="flex items-center gap-1">
+          <span className="font-semibold text-zinc-700">por:</span>
+          <address className="text-sm text-zinc-500">
+            {data.author ? data.author : "John Doe"}
+          </address>
+        </div>
+      </div>
     </Link>
   );
 }

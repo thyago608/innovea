@@ -3,7 +3,7 @@ import { NavItem } from "./NavItem";
 
 export function Header() {
   return (
-    <header className="bg-gray-100" role="menu">
+    <header className="bg-gray-100 sticky top-0" role="menu">
       <div className="max-w-[1000px] h-16 my-0 mx-auto px-4 flex justify-between items-center md:px-8 md:h-20">
         <Logo />
         <nav>
