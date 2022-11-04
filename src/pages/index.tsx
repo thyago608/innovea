@@ -1,42 +1,28 @@
 import Head from "next/head";
-import { GetServerSideProps } from "next";
-import { Article } from "components/Article";
-import { api } from "services/api";
-import { convertISODate } from "utils/convertDate";
-import { ArticlesApiData, ArticleData } from "types/Article";
+import Image from "next/image";
+import Link from "next/link";
 
-interface HomeProps {
-  articles: ArticleData[];
-}
-
-export default function Home({ articles }: HomeProps) {
+export default function Home() {
   return (
-    <main className="min-h-screen max-w-[1000px] my-8 mx-auto">
+    <main className="max-w-[1000px] px-5 my-20 mx-auto grid justify-center items-center gap-10 md:gap-12 lg:grid-cols-2">
       <Head>
         <title>Innovea | Home</title>
       </Head>
-      <section className="flex flex-col gap-4">
-        {articles.map((item) => (
-          <Article key={item.url} data={item} />
-        ))}
+      <section className="flex flex-col gap-4 items-center">
+        <span className="text-xl font-semibold text-zinc-900 md:text-2xl lg:text-4xl">
+          Innovea Blog
+        </span>
+        <p className="text-center text-zinc-700">
+          Fique por dentro das notícias mais recentes do mundo.
+        </p>
+        <Link
+          href="/articles"
+          className="flex items-center justify-center w-44 h-10 rounded-full bg-cyan-500 text-white text-sm lg:text-base"
+        >
+          Clique aqui
+        </Link>
       </section>
+      <Image src="/hero.svg" alt="" width={500} height={300} />
     </main>
   );
 }
-
-export const getServerSideProps: GetServerSideProps = async () => {
-  const response = await api.get<ArticlesApiData>(
-    `top-headlines?country=us&apiKey=${process.env.NEWS_API_KEY}`
-  );
-
-  const articlesFormatted = response.data.articles.map((item) => ({
-    ...item,
-    publishedAt: convertISODate(item.publishedAt),
-  }));
-
-  return {
-    props: {
-      articles: articlesFormatted,
-    },
-  };
-};

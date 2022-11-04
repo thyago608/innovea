@@ -8,8 +8,8 @@ export function Header() {
         <Logo href="/" />
         <nav>
           <ul className="flex gap-4">
-            <NavItem href="/">home</NavItem>
-            <NavItem href="/posts">posts</NavItem>
+            <NavItem href="/">início</NavItem>
+            <NavItem href="/articles">artigos</NavItem>
           </ul>
         </nav>
       </div>
